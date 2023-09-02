@@ -1,4 +1,6 @@
-package com.todocodeacademy.login.logica;
+
+package Logica;
+
 import Logica.Usuario;
 import java.io.Serializable;
 import java.util.List;

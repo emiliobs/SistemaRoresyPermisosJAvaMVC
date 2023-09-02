@@ -233,7 +233,7 @@ public class Login extends javax.swing.JFrame
 
         try
         {
-            usuario = controladora.FindUserByEmailAndPassword(txtEmail.getText(), txtPassword.getText());
+           usuario = controladora.FindUserByEmailAndPassword(txtEmail.getText(), txtPassword.getText());
 
             if (usuario != null)
             {

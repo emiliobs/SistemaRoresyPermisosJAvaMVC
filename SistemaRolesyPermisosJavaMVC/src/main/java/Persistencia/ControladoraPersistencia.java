@@ -7,20 +7,22 @@ import java.util.List;
 
 public class ControladoraPersistencia
 {
+    RolJpaController1  rolJpaController1 = new  RolJpaController1();
+    UsuarioJpaController1 usuarioJpaController1 = new UsuarioJpaController1();
     
-    RolJpaController rolJpaController = null;
-    UsuarioJpaController usuarioJpaController = null;
     
 
     public ControladoraPersistencia()
     {
-       rolJpaController = new RolJpaController();
-       usuarioJpaController = new UsuarioJpaController();
+      
+        
     }
 
     public List<Usuario> ListaUSuarios()
     {
-       return usuarioJpaController.findUsuarioEntities();
+        return usuarioJpaController1.findUsuarioEntities();
     }
+
+    
     
 }
