@@ -1,6 +1,7 @@
 package Logica;
 
 import Persistencia.ControladoraPersistencia;
+import java.util.List;
 
 public class Controladora
 {
@@ -14,9 +15,20 @@ public class Controladora
     
     
 
-    public Usuario FindUserByEmailAndPassword(String text, String text0)
+    public Usuario FindUserByEmailAndPassword(String email, String password)
     {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Usuario> GetListUsuarios = controladoraPersistencia.ListaUSuarios();
+        
+        for (Usuario GetListUsuario : GetListUsuarios)
+        {
+            if (GetListUsuario.getEmail().equals(email) && GetListUsuario.getPassword().equals(password))
+            {
+                return GetListUsuario;
+            }
+            
+        }
+        
+        return  null;
     }
     
 }

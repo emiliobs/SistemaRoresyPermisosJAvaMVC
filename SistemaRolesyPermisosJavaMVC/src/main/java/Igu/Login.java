@@ -15,6 +15,7 @@ public class Login extends javax.swing.JFrame
         controladora = new Controladora();
         usuario = new Usuario();
         initComponents();
+        
         txtEmail.setText("emilio@yopmail.com");
         txtPassword.setText("123.");
     }
@@ -217,8 +218,7 @@ public class Login extends javax.swing.JFrame
 
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLogin1ActionPerformed
     {//GEN-HEADEREND:event_btnLogin1ActionPerformed
-        
-        
+
         if (txtEmail.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please, Enter an Email.");
@@ -235,13 +235,10 @@ public class Login extends javax.swing.JFrame
         {
             usuario = controladora.FindUserByEmailAndPassword(txtEmail.getText(), txtPassword.getText());
 
-          
             if (usuario != null)
-
             {
-//                Principal principal = new Principal();
-//                principal.setVisible(true);
-//                principal.setLocationRelativeTo(null);
+               
+                System.out.println("Usuario Datos: " + usuario.getEmail() + " " + usuario.getPassword());
             }
             else
             {
