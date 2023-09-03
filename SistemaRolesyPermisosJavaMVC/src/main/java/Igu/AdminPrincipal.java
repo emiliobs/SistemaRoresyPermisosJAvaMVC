@@ -3,6 +3,8 @@ package Igu;
 
 import Logica.Controladora;
 import Logica.Usuario;
+import java.awt.Event;
+import javax.swing.table.DefaultTableModel;
 
 public class AdminPrincipal extends javax.swing.JFrame
 {
@@ -215,6 +217,9 @@ public class AdminPrincipal extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
         txtNombreUsaurio.setText(usuario.getEmail());
+        
+        CargarDatos();
+        
     }//GEN-LAST:event_formWindowOpened
 
   
@@ -235,4 +240,27 @@ public class AdminPrincipal extends javax.swing.JFrame
     private javax.swing.JTable tblAdmin;
     private javax.swing.JTextField txtNombreUsaurio;
     // End of variables declaration//GEN-END:variables
+
+    private void CargarDatos()
+    {
+       DefaultTableModel TableModel = new DefaultTableModel()
+       {
+          @Override 
+          public  boolean isCellEditable(int row, int column)
+          {
+              return false;
+          }
+       };
+       
+       String titulos[] = 
+       {
+         "Id", "Usuario", "Rol"
+       };
+       
+        TableModel.setColumnIdentifiers(titulos);
+        
+        tblAdmin.setModel(TableModel);
+        
+        
+    }
 }
