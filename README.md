@@ -14,3 +14,7 @@
 ## Usuarioa
 <img width="1275" alt="image" src="https://github.com/emiliobs/SistemaRoresyPermisosJAvaMVC/assets/3122465/70f4d728-1a26-43ba-8670-fd60f28d21aa">
 
+## Mostrando Datos con el ROL USer
+<img width="1280" alt="image" src="https://github.com/emiliobs/SistemaRoresyPermisosJAvaMVC/assets/3122465/f5ba8323-bf98-4cf8-9c51-3a7148ab1d86">
+
+
