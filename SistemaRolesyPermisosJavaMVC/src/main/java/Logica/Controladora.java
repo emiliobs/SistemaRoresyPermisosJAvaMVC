@@ -31,6 +31,13 @@ public class Controladora
         return  null;
     }
 
+    public List<Usuario> TraerListaUsuarios()
+    {
+        List<Usuario> usuarios = controladoraPersistencia.ListaUSuarios();
+        
+        return usuarios;
+    }
+
   
     
 }

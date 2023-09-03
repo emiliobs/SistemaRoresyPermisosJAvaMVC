@@ -3,6 +3,8 @@ package Igu;
 
 import Logica.Controladora;
 import Logica.Usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -88,6 +90,13 @@ public class UserPrincipal extends javax.swing.JFrame
         btnRecargarTAbla.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnRecargarTAbla.setForeground(new java.awt.Color(255, 51, 0));
         btnRecargarTAbla.setText("Recargar Tabla");
+        btnRecargarTAbla.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRecargarTAblaActionPerformed(evt);
+            }
+        });
 
         btnSAlir.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnSAlir.setForeground(new java.awt.Color(255, 51, 0));
@@ -203,6 +212,11 @@ public class UserPrincipal extends javax.swing.JFrame
         
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnRecargarTAblaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRecargarTAblaActionPerformed
+    {//GEN-HEADEREND:event_btnRecargarTAblaActionPerformed
+        CargarTabla();
+    }//GEN-LAST:event_btnRecargarTAblaActionPerformed
+
    
    
 
@@ -238,6 +252,34 @@ public class UserPrincipal extends javax.swing.JFrame
          //Aqui establezco losnombres de la columnas
          String titulos[] = {"Id","Usuario","Rol"};
          tableModel.setColumnIdentifiers(titulos);
+         
+         
+         //Traer de la bd la lista de usuarios;
+         List<Usuario> listaUsuarios  = controladora.TraerListaUsuarios();
+         
+         if (listaUsuarios != null)
+        {
+            //Recorrer la lista
+            for (Usuario listaUsuario : listaUsuarios)
+            {
+                Object[] objects = 
+                {
+                    listaUsuario.getId(), 
+                    listaUsuario.getEmail(), 
+                    listaUsuario.getUnRol().getNombreRol()
+                };
+                
+                
+                tableModel.addRow(objects);
+            }
+        }
+        else
+         {
+             JOptionPane.showConfirmDialog(null, "Sorry!, No hay Datos en la Tabla.");
+         }
+         
+         
+         
          tblUser.setModel(tableModel);
                  
     }
