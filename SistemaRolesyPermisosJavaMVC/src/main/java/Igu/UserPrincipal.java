@@ -1,4 +1,3 @@
-
 package Igu;
 
 import Logica.Controladora;
@@ -7,21 +6,20 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class UserPrincipal extends javax.swing.JFrame
 {
-    Controladora controladora= null;
+
+    Controladora controladora = null;
     Usuario usuario = null;
-   
-    public UserPrincipal( Controladora controladora, Usuario usuario)
+
+    public UserPrincipal(Controladora controladora, Usuario usuario)
     {
-       this.controladora = controladora;
+        this.controladora = controladora;
         initComponents();
         this.usuario = usuario;
-        
+
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
@@ -207,9 +205,9 @@ public class UserPrincipal extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
         txtNombreUsaurio.setText(usuario.getEmail());
-        
+
         CargarTabla();
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnRecargarTAblaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRecargarTAblaActionPerformed
@@ -217,8 +215,6 @@ public class UserPrincipal extends javax.swing.JFrame
         CargarTabla();
     }//GEN-LAST:event_btnRecargarTAblaActionPerformed
 
-   
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarUsuario;
@@ -244,43 +240,46 @@ public class UserPrincipal extends javax.swing.JFrame
             @Override
             public boolean isCellEditable(int row, int column)
             {
-                return  false;
+                return false;
             }
-               
+
         };
-        
-         //Aqui establezco losnombres de la columnas
-         String titulos[] = {"Id","Usuario","Rol"};
-         tableModel.setColumnIdentifiers(titulos);
-         
-         
-         //Traer de la bd la lista de usuarios;
-         List<Usuario> listaUsuarios  = controladora.TraerListaUsuarios();
-         
-         if (listaUsuarios != null)
+
+        //Aqui establezco losnombres de la columnas
+        String titulos[] =
+        {
+            "Id", "Usuario", "Rol"
+        };
+        tableModel.setColumnIdentifiers(titulos);
+
+        //Traer de la bd la lista de usuarios;
+        List<Usuario> listaUsuarios = controladora.TraerListaUsuarios();
+
+        if (listaUsuarios != null)
         {
             //Recorrer la lista
             for (Usuario listaUsuario : listaUsuarios)
             {
-                Object[] objects = 
+                if (listaUsuario.getUnRol().getNombreRol().equals("User"))
                 {
-                    listaUsuario.getId(), 
-                    listaUsuario.getEmail(), 
-                    listaUsuario.getUnRol().getNombreRol()
-                };
-                
-                
-                tableModel.addRow(objects);
+                    Object[] objects =
+                    {
+                        listaUsuario.getId(),
+                        listaUsuario.getEmail(),
+                        listaUsuario.getUnRol().getNombreRol()
+                    };
+
+                    tableModel.addRow(objects);
+                }
+              
             }
         }
         else
-         {
-             JOptionPane.showConfirmDialog(null, "Sorry!, No hay Datos en la Tabla.");
-         }
-         
-         
-         
-         tblUser.setModel(tableModel);
-                 
+        {
+            JOptionPane.showMessageDialog(null, "Sorry!, No hay Datos en la Tabla.");
+        }
+
+        tblUser.setModel(tableModel);
+
     }
 }
