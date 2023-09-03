@@ -240,7 +240,7 @@ public class Login extends javax.swing.JFrame
                 //Traer el rol del usuario logiado
                 if (usuario.getUnRol().getNombreRol().equals("Admin"))
                 {
-                    AdminPrincipal adminPrincipal = new AdminPrincipal();
+                    AdminPrincipal adminPrincipal = new AdminPrincipal(controladora);
                     adminPrincipal.setVisible(true);
                     adminPrincipal.setLocationRelativeTo(null);
                     System.out.println("Usuario Datos: " + usuario.getEmail() + " " + usuario.getPassword());
@@ -248,13 +248,12 @@ public class Login extends javax.swing.JFrame
                 }
                 else
                 {
-                    UserPrincipal userPrincipal = new UserPrincipal();
+                    UserPrincipal userPrincipal = new UserPrincipal(controladora);
                     userPrincipal.setVisible(true);
                     userPrincipal.setLocationRelativeTo(null);
                     System.out.println("Usuario Datos: " + usuario.getEmail() + " " + usuario.getPassword());
 
                 }
-                //String rol = controladora.ValidarRol(usuario);
 
             }
             else
