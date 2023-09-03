@@ -15,7 +15,7 @@ public class Login extends javax.swing.JFrame
         controladora = new Controladora();
         usuario = new Usuario();
         initComponents();
-        
+
         txtEmail.setText("emilio@yopmail.com");
         txtPassword.setText("123.");
     }
@@ -233,12 +233,29 @@ public class Login extends javax.swing.JFrame
 
         try
         {
-           usuario = controladora.FindUserByEmailAndPassword(txtEmail.getText(), txtPassword.getText());
+            usuario = controladora.FindUserByEmailAndPassword(txtEmail.getText(), txtPassword.getText());
 
             if (usuario != null)
             {
-               
-                System.out.println("Usuario Datos: " + usuario.getEmail() + " " + usuario.getPassword());
+                //Traer el rol del usuario logiado
+                if (usuario.getUnRol().getNombreRol().equals("Admin"))
+                {
+                    AdminPrincipal adminPrincipal = new AdminPrincipal();
+                    adminPrincipal.setVisible(true);
+                    adminPrincipal.setLocationRelativeTo(null);
+                    System.out.println("Usuario Datos: " + usuario.getEmail() + " " + usuario.getPassword());
+
+                }
+                else
+                {
+                    UserPrincipal userPrincipal = new UserPrincipal();
+                    userPrincipal.setVisible(true);
+                    userPrincipal.setLocationRelativeTo(null);
+                    System.out.println("Usuario Datos: " + usuario.getEmail() + " " + usuario.getPassword());
+
+                }
+                //String rol = controladora.ValidarRol(usuario);
+
             }
             else
             {
