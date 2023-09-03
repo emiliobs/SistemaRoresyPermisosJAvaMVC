@@ -3,6 +3,7 @@ package Igu;
 
 import Logica.Controladora;
 import Logica.Usuario;
+import javax.swing.table.DefaultTableModel;
 
 
 public class UserPrincipal extends javax.swing.JFrame
@@ -30,7 +31,7 @@ public class UserPrincipal extends javax.swing.JFrame
         txtNombreUsaurio = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUser = new javax.swing.JTable();
         btnBorrarUsuario = new javax.swing.JButton();
         btnRecargarTAbla = new javax.swing.JButton();
         btnSAlir = new javax.swing.JButton();
@@ -39,6 +40,8 @@ public class UserPrincipal extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Formulario Usuario!");
+        setBackground(new java.awt.Color(102, 102, 102));
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter()
         {
             public void windowOpened(java.awt.event.WindowEvent evt)
@@ -49,9 +52,12 @@ public class UserPrincipal extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
+        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+
         jSeparator1.setBackground(new java.awt.Color(255, 51, 0));
 
         txtNombreUsaurio.setEditable(false);
+        txtNombreUsaurio.setBackground(new java.awt.Color(102, 102, 102));
         txtNombreUsaurio.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         txtNombreUsaurio.setForeground(new java.awt.Color(255, 51, 0));
         txtNombreUsaurio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -60,7 +66,7 @@ public class UserPrincipal extends javax.swing.JFrame
         jLabel2.setForeground(new java.awt.Color(255, 51, 0));
         jLabel2.setText("SISTEMA ADMINISTRADOR DE USUARIOS");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
                 {},
@@ -73,7 +79,7 @@ public class UserPrincipal extends javax.swing.JFrame
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblUser);
 
         btnBorrarUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnBorrarUsuario.setForeground(new java.awt.Color(255, 51, 0));
@@ -109,9 +115,9 @@ public class UserPrincipal extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                         .addComponent(btnRecargarTAbla, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
+                        .addGap(66, 66, 66)
                         .addComponent(btnSAlir, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
                     .addComponent(jSeparator2)
@@ -127,7 +133,7 @@ public class UserPrincipal extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(19, 19, 19)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(16, Short.MAX_VALUE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNombreUsaurio, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +169,7 @@ public class UserPrincipal extends javax.swing.JFrame
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,9 +180,7 @@ public class UserPrincipal extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,6 +198,9 @@ public class UserPrincipal extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
         txtNombreUsaurio.setText(usuario.getEmail());
+        
+        CargarTabla();
+        
     }//GEN-LAST:event_formWindowOpened
 
    
@@ -210,7 +217,28 @@ public class UserPrincipal extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblUser;
     private javax.swing.JTextField txtNombreUsaurio;
     // End of variables declaration//GEN-END:variables
+
+    private void CargarTabla()
+    {
+        //Definir el modelo que queremos que tenga la tabla:
+        DefaultTableModel tableModel = new DefaultTableModel()
+        {
+            // Aqui que las fila y columnas no sean Editables:
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return  false;
+            }
+               
+        };
+        
+         //Aqui establezco losnombres de la columnas
+         String titulos[] = {"Id","Usuario","Rol"};
+         tableModel.setColumnIdentifiers(titulos);
+         tblUser.setModel(tableModel);
+                 
+    }
 }
