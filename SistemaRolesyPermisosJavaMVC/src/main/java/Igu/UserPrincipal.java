@@ -32,7 +32,7 @@ public class UserPrincipal extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUser = new javax.swing.JTable();
-        btnBorrarUsuario = new javax.swing.JButton();
+        btnNuevoUsuario = new javax.swing.JButton();
         btnRecargarTAbla = new javax.swing.JButton();
         btnSAlir = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
@@ -81,9 +81,16 @@ public class UserPrincipal extends javax.swing.JFrame
         ));
         jScrollPane1.setViewportView(tblUser);
 
-        btnBorrarUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        btnBorrarUsuario.setForeground(new java.awt.Color(255, 51, 0));
-        btnBorrarUsuario.setText("Nuevo Usuario");
+        btnNuevoUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        btnNuevoUsuario.setForeground(new java.awt.Color(255, 51, 0));
+        btnNuevoUsuario.setText("Nuevo Usuario");
+        btnNuevoUsuario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnNuevoUsuarioActionPerformed(evt);
+            }
+        });
 
         btnRecargarTAbla.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnRecargarTAbla.setForeground(new java.awt.Color(255, 51, 0));
@@ -121,7 +128,7 @@ public class UserPrincipal extends javax.swing.JFrame
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNuevoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                         .addComponent(btnRecargarTAbla, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66)
@@ -160,7 +167,7 @@ public class UserPrincipal extends javax.swing.JFrame
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRecargarTAbla)
-                    .addComponent(btnBorrarUsuario)
+                    .addComponent(btnNuevoUsuario)
                     .addComponent(btnSAlir))
                 .addGap(23, 23, 23))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,6 +206,10 @@ public class UserPrincipal extends javax.swing.JFrame
 
     private void btnSAlirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSAlirActionPerformed
     {//GEN-HEADEREND:event_btnSAlirActionPerformed
+         Login login = new Login();
+       login.setVisible(true);
+       login.setLocationRelativeTo(null);
+        
         this.dispose();
     }//GEN-LAST:event_btnSAlirActionPerformed
 
@@ -215,9 +226,18 @@ public class UserPrincipal extends javax.swing.JFrame
         CargarTabla();
     }//GEN-LAST:event_btnRecargarTAblaActionPerformed
 
+    private void btnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNuevoUsuarioActionPerformed
+    {//GEN-HEADEREND:event_btnNuevoUsuarioActionPerformed
+        AltaUsuario altaUsuario = new AltaUsuario(controladora);
+        altaUsuario.setVisible(true);
+        altaUsuario.setLocationRelativeTo(null);
+        
+         dispose();
+    }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBorrarUsuario;
+    private javax.swing.JButton btnNuevoUsuario;
     private javax.swing.JButton btnRecargarTAbla;
     private javax.swing.JButton btnSAlir;
     private javax.swing.JLabel jLabel1;
@@ -276,7 +296,7 @@ public class UserPrincipal extends javax.swing.JFrame
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Sorry!, No hay Datos en la Tabla.");
+            JOptionPane.showMessageDialog(null, "Sorry!, No hay Datos en la BD.");
         }
 
         tblUser.setModel(tableModel);

@@ -4,6 +4,8 @@ package Igu;
 import Logica.Controladora;
 import Logica.Usuario;
 import java.awt.Event;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class AdminPrincipal extends javax.swing.JFrame
@@ -75,6 +77,13 @@ public class AdminPrincipal extends javax.swing.JFrame
         btnRecargarTabla.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnRecargarTabla.setForeground(new java.awt.Color(255, 51, 0));
         btnRecargarTabla.setText("Recargar Tabla");
+        btnRecargarTabla.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRecargarTablaActionPerformed(evt);
+            }
+        });
 
         btnBorrarUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnBorrarUsuario.setForeground(new java.awt.Color(255, 51, 0));
@@ -105,6 +114,13 @@ public class AdminPrincipal extends javax.swing.JFrame
         btnNuevoUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnNuevoUsuario.setForeground(new java.awt.Color(255, 51, 0));
         btnNuevoUsuario.setText("Nuevo Usuario");
+        btnNuevoUsuario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnNuevoUsuarioActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(255, 51, 0));
 
@@ -206,6 +222,10 @@ public class AdminPrincipal extends javax.swing.JFrame
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSalirActionPerformed
     {//GEN-HEADEREND:event_btnSalirActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
+        
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
@@ -221,6 +241,20 @@ public class AdminPrincipal extends javax.swing.JFrame
         CargarDatos();
         
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnRecargarTablaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRecargarTablaActionPerformed
+    {//GEN-HEADEREND:event_btnRecargarTablaActionPerformed
+        CargarDatos();
+    }//GEN-LAST:event_btnRecargarTablaActionPerformed
+
+    private void btnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNuevoUsuarioActionPerformed
+    {//GEN-HEADEREND:event_btnNuevoUsuarioActionPerformed
+       AltaUsuario altaUsuario = new AltaUsuario(controladora);
+       altaUsuario.setVisible(true);
+       altaUsuario.setLocationRelativeTo(null);
+       
+       dispose();
+    }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
   
    
@@ -258,6 +292,31 @@ public class AdminPrincipal extends javax.swing.JFrame
        };
        
         TableModel.setColumnIdentifiers(titulos);
+        
+        List<Usuario> listaUsuarios = controladora.TraerListaUsuarios();
+        
+        if (listaUsuarios !=null)
+        {
+            for (Usuario listaUsuario : listaUsuarios)
+            {
+                if (listaUsuario.getUnRol().getNombreRol().equals("Admin"))
+                {
+                    Object object[] = 
+                    {
+                       listaUsuario.getId(),
+                       listaUsuario.getEmail(),
+                       listaUsuario.getUnRol().getNombreRol()
+                    };
+                    
+                    TableModel.addRow(object);
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Sorry!, No hay Datos en la BD.");
+        }
+        
         
         tblAdmin.setModel(TableModel);
         

@@ -38,6 +38,11 @@ public class Controladora
         return usuarios;
     }
 
+    public List<Rol> TraerListaRoles()
+    {
+        return controladoraPersistencia.TraerListaRoles();
+    }
+
   
     
 }
