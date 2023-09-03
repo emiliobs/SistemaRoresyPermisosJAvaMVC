@@ -2,19 +2,23 @@
 package Igu;
 
 import Logica.Controladora;
+import Logica.Usuario;
 
 
 public class UserPrincipal extends javax.swing.JFrame
 {
     Controladora controladora= null;
+    Usuario usuario = null;
    
-    public UserPrincipal( Controladora controladora)
+    public UserPrincipal( Controladora controladora, Usuario usuario)
     {
        this.controladora = controladora;
         initComponents();
+        this.usuario = usuario;
+        
     }
 
-   
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
@@ -31,16 +35,24 @@ public class UserPrincipal extends javax.swing.JFrame
         btnRecargarTAbla = new javax.swing.JButton();
         btnSAlir = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Formulario Usuario!");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         jSeparator1.setBackground(new java.awt.Color(255, 51, 0));
 
         txtNombreUsaurio.setEditable(false);
-        txtNombreUsaurio.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        txtNombreUsaurio.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         txtNombreUsaurio.setForeground(new java.awt.Color(255, 51, 0));
         txtNombreUsaurio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -84,6 +96,10 @@ public class UserPrincipal extends javax.swing.JFrame
 
         jSeparator2.setBackground(new java.awt.Color(255, 51, 0));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel1.setText("Usuario:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -101,20 +117,26 @@ public class UserPrincipal extends javax.swing.JFrame
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2))
                 .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(319, 319, 319))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNombreUsaurio, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(6, 6, 6))
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(19, 19, 19)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(16, Short.MAX_VALUE)))
+                    .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNombreUsaurio, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,7 +154,7 @@ public class UserPrincipal extends javax.swing.JFrame
                     .addComponent(txtNombreUsaurio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(495, 495, 495)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(85, Short.MAX_VALUE)))
+                    .addContainerGap(93, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -167,6 +189,11 @@ public class UserPrincipal extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_btnSAlirActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        txtNombreUsaurio.setText(usuario.getEmail());
+    }//GEN-LAST:event_formWindowOpened
+
    
    
 
@@ -174,6 +201,7 @@ public class UserPrincipal extends javax.swing.JFrame
     private javax.swing.JButton btnBorrarUsuario;
     private javax.swing.JButton btnRecargarTAbla;
     private javax.swing.JButton btnSAlir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
