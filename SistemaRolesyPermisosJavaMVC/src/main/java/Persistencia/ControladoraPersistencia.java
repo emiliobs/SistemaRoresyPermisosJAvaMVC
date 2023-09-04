@@ -3,7 +3,10 @@ package Persistencia;
 
 import Logica.Rol;
 import Logica.Usuario;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ControladoraPersistencia
@@ -38,6 +41,18 @@ public class ControladoraPersistencia
     public void AltaUsuario(Usuario usuario)
     {
         usuarioJpaController1.create(usuario);
+    }
+
+    public void BorrarUsuario(int idUsuario)
+    {
+        try
+        {
+            usuarioJpaController1.destroy(idUsuario);
+        }
+        catch (NonexistentEntityException ex)
+        {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
    

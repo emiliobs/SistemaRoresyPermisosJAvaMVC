@@ -50,16 +50,15 @@ public class Controladora
         //Aqui debo buscar el rol selecinado para crean el nuevo usuario y luego asignarlo al usurio:
         Rol findRol = new Rol();
         findRol = this.TraerRole(rolRecibido);
-        
+
         if (findRol != null)
         {
             usuario.setUnRol(findRol);
         }
-        
-        //taer el ultimo id de la tabla usuario:
-        int id = this.BuscarUltimoIdUsarios();
-        usuario.setId(id);
 
+        //taer el ultimo id de la tabla usuario: nota agregar + 1, por que estaria duplicando el ultimo registro o id
+//        int id = this.BuscarUltimoIdUsarios();
+//        usuario.setId(id + 1);
         controladoraPersistencia.AltaUsuario(usuario);
     }
 
@@ -82,9 +81,14 @@ public class Controladora
     private int BuscarUltimoIdUsarios()
     {
         List<Usuario> listUsuarios = this.TraerListaUsuarios();
-        
-        Usuario usuario = listUsuarios.get(listUsuarios.size() -1);
-        
+
+        Usuario usuario = listUsuarios.get(listUsuarios.size() - 1);
+
         return usuario.getId();
+    }
+
+    public void BorrarUsuario(int idUsuario)
+    {
+        controladoraPersistencia.BorrarUsuario(idUsuario);
     }
 }

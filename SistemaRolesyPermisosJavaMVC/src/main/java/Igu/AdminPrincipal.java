@@ -91,6 +91,13 @@ public class AdminPrincipal extends javax.swing.JFrame
         btnBorrarUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnBorrarUsuario.setForeground(new java.awt.Color(255, 51, 0));
         btnBorrarUsuario.setText("Borrar Usuario");
+        btnBorrarUsuario.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnBorrarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnEditarUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         btnEditarUsuario.setForeground(new java.awt.Color(255, 51, 0));
@@ -258,6 +265,49 @@ public class AdminPrincipal extends javax.swing.JFrame
 
         dispose();
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
+
+    private void btnBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBorrarUsuarioActionPerformed
+    {//GEN-HEADEREND:event_btnBorrarUsuarioActionPerformed
+        //que la tabla tenga datos a seleccionar:
+        if (tblAdmin.getRowCount() > 0)
+        {
+            //Controla que se haya seleecionado un elemento de la tabla:
+            if (tblAdmin.getSelectedRow() != -1)
+            {
+                try
+                {
+                    int salida = JOptionPane.showConfirmDialog(null,
+                            "Desea Borrar el Registro con Email: ? " + usuario.getEmail() + " , De la BD.", "Borrar Usuario",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE);
+                    if (salida == 0)
+                    {
+                        //Obtengo el Id del ELemto a eliminar dela gtabla:
+                        int idUsuario = Integer.parseInt(tblAdmin.getValueAt(tblAdmin.getSelectedRow(), 0).toString());
+
+                        controladora.BorrarUsuario(idUsuario);
+
+                        JOptionPane.showMessageDialog(null, "Registro Borrado de la BD.....!");
+
+                        CargarDatos();
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    System.out.println("ERROR en Admin Principal Borrar Usuario: " + e.getMessage());
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Sorry!, Debe Seleccionar un Elemento de la Tabla.");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Sorry!, La Tabla esta Vacía.");
+        }
+    }//GEN-LAST:event_btnBorrarUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

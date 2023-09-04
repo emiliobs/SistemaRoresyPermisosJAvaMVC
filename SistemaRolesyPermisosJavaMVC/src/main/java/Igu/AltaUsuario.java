@@ -3,7 +3,6 @@ package Igu;
 import Logica.Controladora;
 import Logica.Rol;
 import Logica.Usuario;
-import com.mysql.cj.util.StringUtils;
 import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
 import java.util.List;
 import javax.swing.JOptionPane;
