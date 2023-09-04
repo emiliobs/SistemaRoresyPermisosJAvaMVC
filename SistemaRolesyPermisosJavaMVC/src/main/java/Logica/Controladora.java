@@ -55,6 +55,10 @@ public class Controladora
         {
             usuario.setUnRol(findRol);
         }
+        
+        //taer el ultimo id de la tabla usuario:
+        int id = this.BuscarUltimoIdUsarios();
+        usuario.setId(id);
 
         controladoraPersistencia.AltaUsuario(usuario);
     }
@@ -73,5 +77,14 @@ public class Controladora
 
         return null;
 
+    }
+
+    private int BuscarUltimoIdUsarios()
+    {
+        List<Usuario> listUsuarios = this.TraerListaUsuarios();
+        
+        Usuario usuario = listUsuarios.get(listUsuarios.size() -1);
+        
+        return usuario.getId();
     }
 }
