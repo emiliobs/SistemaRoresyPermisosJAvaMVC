@@ -14,10 +14,10 @@ public class AltaUsuario extends javax.swing.JFrame
     Controladora controladora = null;
     Usuario usuario = null;
 
-    public AltaUsuario(Controladora controladora)
+    public AltaUsuario(Controladora controladora, Usuario usuario)
     {
         this.controladora = controladora;
-        usuario = new Usuario();
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -225,10 +225,16 @@ public class AltaUsuario extends javax.swing.JFrame
         
         try
         {
-              //usuario = new Usuario(txtNombreUser.getText(), txtPassword.getText(), cboRol.getComponents().toString())
+             controladora.AltaUsuario(txtNombreUser.getText(), txtPassword.getText(), String.valueOf(cboRol.getSelectedItem()));
+        
+             JOptionPane.showMessageDialog(null,"Usuario Creado en la BD de Forma Exitosa!");
+             
+             txtNombreUser.setText("");
+             txtPassword.setText("");
         }
         catch (Exception e)
         {
+            System.out.println("ERROR en Alta Usuario: " + e.getMessage());
         }
      
         
@@ -245,7 +251,7 @@ public class AltaUsuario extends javax.swing.JFrame
             for (Rol listRole : listRoles)
             {
                 
-                    cboRol.addItem(listRole.getNombreRol());
+               cboRol.addItem(listRole.getNombreRol());
                 
             }
         }
@@ -257,9 +263,9 @@ public class AltaUsuario extends javax.swing.JFrame
 
     private void btnVerUsariosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnVerUsariosActionPerformed
     {//GEN-HEADEREND:event_btnVerUsariosActionPerformed
-        UserPrincipal principal = new UserPrincipal(controladora, usuario);
-        principal.setVisible(true);
-        principal.setLocationRelativeTo(null);
+         AdminPrincipal adminPrincipal = new AdminPrincipal(controladora, usuario);
+         adminPrincipal.setVisible(true);
+         adminPrincipal.setLocationRelativeTo(null);
 
         dispose();
     }//GEN-LAST:event_btnVerUsariosActionPerformed

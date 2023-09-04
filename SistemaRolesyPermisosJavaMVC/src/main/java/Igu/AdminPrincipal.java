@@ -1,4 +1,3 @@
-
 package Igu;
 
 import Logica.Controladora;
@@ -10,18 +9,22 @@ import javax.swing.table.DefaultTableModel;
 
 public class AdminPrincipal extends javax.swing.JFrame
 {
+
     Controladora controladora = null;
     Usuario usuario = null;
-   
+
     public AdminPrincipal(Controladora controladora, Usuario usuario)
     {
         this.controladora = controladora;
         initComponents();
         this.usuario = usuario;
-                
+
+        txtNombreUsaurio.setText(usuario.getEmail());
+
+        CargarDatos();
+
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
@@ -225,7 +228,7 @@ public class AdminPrincipal extends javax.swing.JFrame
         Login login = new Login();
         login.setVisible(true);
         login.setLocationRelativeTo(null);
-        
+
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
@@ -237,9 +240,9 @@ public class AdminPrincipal extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
         txtNombreUsaurio.setText(usuario.getEmail());
-        
+
         CargarDatos();
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnRecargarTablaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRecargarTablaActionPerformed
@@ -249,15 +252,13 @@ public class AdminPrincipal extends javax.swing.JFrame
 
     private void btnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNuevoUsuarioActionPerformed
     {//GEN-HEADEREND:event_btnNuevoUsuarioActionPerformed
-       AltaUsuario altaUsuario = new AltaUsuario(controladora);
-       altaUsuario.setVisible(true);
-       altaUsuario.setLocationRelativeTo(null);
-       
-       dispose();
+        AltaUsuario altaUsuario = new AltaUsuario(controladora, usuario);
+        altaUsuario.setVisible(true);
+        altaUsuario.setLocationRelativeTo(null);
+
+        dispose();
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
-  
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarUsuario;
@@ -277,49 +278,46 @@ public class AdminPrincipal extends javax.swing.JFrame
 
     private void CargarDatos()
     {
-       DefaultTableModel TableModel = new DefaultTableModel()
-       {
-          @Override 
-          public  boolean isCellEditable(int row, int column)
-          {
-              return false;
-          }
-       };
-       
-       String titulos[] = 
-       {
-         "Id", "Usuario", "Rol"
-       };
-       
+        DefaultTableModel TableModel = new DefaultTableModel()
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
+
+        String titulos[] =
+        {
+            "Id", "Usuario", "Rol"
+        };
+
         TableModel.setColumnIdentifiers(titulos);
-        
+
         List<Usuario> listaUsuarios = controladora.TraerListaUsuarios();
-        
-        if (listaUsuarios !=null)
+
+        if (listaUsuarios != null)
         {
             for (Usuario listaUsuario : listaUsuarios)
             {
-                if (listaUsuario.getUnRol().getNombreRol().equals("Admin"))
+
+                Object object[] =
                 {
-                    Object object[] = 
-                    {
-                       listaUsuario.getId(),
-                       listaUsuario.getEmail(),
-                       listaUsuario.getUnRol().getNombreRol()
-                    };
-                    
-                    TableModel.addRow(object);
-                }
+                    listaUsuario.getId(),
+                    listaUsuario.getEmail(),
+                    listaUsuario.getUnRol().getNombreRol()
+                };
+
+                TableModel.addRow(object);
+
             }
         }
         else
         {
             JOptionPane.showMessageDialog(null, "Sorry!, No hay Datos en la BD.");
         }
-        
-        
+
         tblAdmin.setModel(TableModel);
-        
-        
+
     }
 }

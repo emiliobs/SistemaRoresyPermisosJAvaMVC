@@ -228,7 +228,7 @@ public class UserPrincipal extends javax.swing.JFrame
 
     private void btnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNuevoUsuarioActionPerformed
     {//GEN-HEADEREND:event_btnNuevoUsuarioActionPerformed
-        AltaUsuario altaUsuario = new AltaUsuario(controladora);
+        AltaUsuario altaUsuario = new AltaUsuario(controladora, usuario);
         altaUsuario.setVisible(true);
         altaUsuario.setLocationRelativeTo(null);
         

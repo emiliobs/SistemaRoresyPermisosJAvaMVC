@@ -30,6 +30,18 @@ public class ControladoraPersistencia
        
     }
 
+    public void AltaUsurio(Usuario usuario)
+    {
+        usuarioJpaController1.create(usuario);
+    }
+
+    public void AltaUsuario(Usuario usuario)
+    {
+        usuarioJpaController1.create(usuario);
+    }
+
+   
+
     
     
 }
