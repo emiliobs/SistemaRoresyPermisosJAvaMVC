@@ -48,39 +48,30 @@ public class Controladora
         usuario.setPassword(password);
 
         //Aqui debo buscar el rol selecinado para crean el nuevo usuario y luego asignarlo al usurio:
-//          Rol findRol = new Rol();
-//          findRol = this.TraerRole(rolRecibido);
+        Rol findRol = new Rol();
+        findRol = this.TraerRole(rolRecibido);
+        
+        if (findRol != null)
+        {
+            usuario.setUnRol(findRol);
+        }
+
+        controladoraPersistencia.AltaUsuario(usuario);
+    }
+
+    private Rol TraerRole(String rolRecibido)
+    {
         List<Rol> roles = TraerListaRoles();
 
         for (Rol role : roles)
         {
             if (role.getNombreRol().equals(rolRecibido))
             {
-                usuario.setUnRol(role);
+                return role;
             }
         }
 
-        controladoraPersistencia.AltaUsuario(usuario);
+        return null;
 
-//        if (findRol != null)
-//        {
-//            usuario.setUnRol(findRol);
-//        }
     }
-
-//    private Rol TraerRole(String rolRecibido)
-//    {
-//        List<Rol> roles = TraerListaRoles();
-//        
-//        for (Rol role : roles)
-//        {
-//            if (role.getNombreRol().equals(rolRecibido))
-//            {
-//                return role;
-//            }
-//        }
-//        
-//        return null;
-//        
-//    }
 }
