@@ -92,13 +92,45 @@ public class Controladora
         controladoraPersistencia.BorrarUsuario(idUsuario);
     }
 
-    public void EditarUsuario(int idUsuario)
-    {
-        
-    }
+//    public void EditarUsuario(String email, String password, String rol)
+//    {
+//        Usuario usuario = new Usuario();
+//        usuario.setEmail(email);
+//        usuario.setPassword(password);
+//        
+//        
+//         Rol findRol = new Rol();
+//         findRol = TraerRole(rol);
+//         if (findRol != null)
+//        {
+//            usuario.setUnRol(findRol);
+//        }
+//        
+//        controladoraPersistencia.EditarUsuario(usuario);
+//    }
 
     public Usuario TraertUsrioPorId(int idUsuario)
     {
-        return  controladoraPersistencia.TraertUsrioPorId(idUsuario);
+        return controladoraPersistencia.TraertUsrioPorId(idUsuario);
     }
+
+    public void EditarUsuario(Usuario usuario, String email, String password, String rol)
+    {
+        //usuario.setId(usuario.getId());
+        usuario.setEmail(email);
+        usuario.setPassword(password);
+        
+        Rol findRol = new Rol();
+         findRol = TraerRole(rol);
+         if (findRol != null)
+        {
+            usuario.setUnRol(findRol);
+        }
+       
+         controladoraPersistencia.EditarUsuario(usuario);
+    }
+
+   
+
+   
 }
