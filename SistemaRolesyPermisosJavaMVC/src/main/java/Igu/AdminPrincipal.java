@@ -241,7 +241,37 @@ public class AdminPrincipal extends javax.swing.JFrame
 
     private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditarUsuarioActionPerformed
     {//GEN-HEADEREND:event_btnEditarUsuarioActionPerformed
-        // TODO add your handling code here:
+          //que la tabla tenga datos a seleccionar:
+        if (tblAdmin.getRowCount() > 0)
+        {
+            //Controla que se haya seleecionado un elemento de la tabla:
+            if (tblAdmin.getSelectedRow() != -1)
+            {
+                try
+                {
+                    int idUsuario = Integer.parseInt(tblAdmin.getValueAt(tblAdmin.getSelectedRow(), 0).toString());
+                    
+                   EditarUsuario editarUsuario = new EditarUsuario(controladora, usuario, idUsuario);
+                   editarUsuario.setVisible(true);
+                   editarUsuario.setLocationRelativeTo(null);
+                   
+                   dispose();
+
+                }
+                catch (Exception e)
+                {
+                    System.out.println("ERROR en Admin Principal Editar Usuario: " + e.getMessage());
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Sorry!, Debe Seleccionar un Elemento de la Tabla.");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Sorry!, La Tabla esta Vacía.");
+        }
     }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened

@@ -11,15 +11,15 @@ import java.util.logging.Logger;
 
 public class ControladoraPersistencia
 {
-    RolJpaController1  rolJpaController1 = new  RolJpaController1();
-    UsuarioJpaController1 usuarioJpaController1 = new UsuarioJpaController1();
+    RolJpaController1  rolJpaController1 = null; 
+    UsuarioJpaController1 usuarioJpaController1 = null; 
     
     
 
     public ControladoraPersistencia()
     {
-      
-        
+      rolJpaController1 = new RolJpaController1();
+      usuarioJpaController1 = new UsuarioJpaController1();
     }
 
     public List<Usuario> ListaUSuarios()
@@ -53,6 +53,16 @@ public class ControladoraPersistencia
         {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void EditarUsuario(int idUsuario)
+    {
+       
+    }
+
+    public Usuario TraertUsrioPorId(int idUsuario)
+    {
+        return usuarioJpaController1.findUsuario(idUsuario);
     }
 
    

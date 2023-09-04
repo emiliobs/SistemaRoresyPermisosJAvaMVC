@@ -91,4 +91,14 @@ public class Controladora
     {
         controladoraPersistencia.BorrarUsuario(idUsuario);
     }
+
+    public void EditarUsuario(int idUsuario)
+    {
+        
+    }
+
+    public Usuario TraertUsrioPorId(int idUsuario)
+    {
+        return  controladoraPersistencia.TraertUsrioPorId(idUsuario);
+    }
 }

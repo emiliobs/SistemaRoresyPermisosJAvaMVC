@@ -1,32 +1,34 @@
+
 package Igu;
 
 import Logica.Controladora;
 import Logica.Rol;
 import Logica.Usuario;
 import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
-import java.util.List;
 import javax.swing.JOptionPane;
 
-public class AltaUsuario extends javax.swing.JFrame
-{
 
+public class EditarUsuario extends javax.swing.JFrame
+{
     Controladora controladora = null;
     Usuario usuario = null;
-
-    public AltaUsuario(Controladora controladora, Usuario usuario)
+   
+    public EditarUsuario( Controladora controladora, Usuario usuario, int idUsuario)
     {
+        initComponents();
+        
         this.controladora = controladora;
         this.usuario = usuario;
-        initComponents();
+        
+        CargarUsuario(idUsuario);
     }
 
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
 
-        jLabel4 = new javax.swing.JLabel();
-        txtPassword1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -36,19 +38,13 @@ public class AltaUsuario extends javax.swing.JFrame
         jLabel5 = new javax.swing.JLabel();
         cboRol = new javax.swing.JComboBox<>();
         btnLimpiar = new javax.swing.JButton();
-        btnGuardarUsuario = new javax.swing.JButton();
+        btnEditarUsuario = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnVerUsarios = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel4.setText("Password           :");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(102, 102, 102));
-        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter()
         {
             public void windowOpened(java.awt.event.WindowEvent evt)
@@ -61,7 +57,7 @@ public class AltaUsuario extends javax.swing.JFrame
 
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel2.setText("ALTAS ADMINISTRADOR DE USUARIOS");
+        jLabel2.setText("EDITAR ADMINISTRADOR DE USUARIOS");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
@@ -86,14 +82,14 @@ public class AltaUsuario extends javax.swing.JFrame
             }
         });
 
-        btnGuardarUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        btnGuardarUsuario.setForeground(new java.awt.Color(255, 51, 0));
-        btnGuardarUsuario.setText("Guardar Usuario");
-        btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener()
+        btnEditarUsuario.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        btnEditarUsuario.setForeground(new java.awt.Color(255, 51, 0));
+        btnEditarUsuario.setText("Editar Usuario");
+        btnEditarUsuario.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnGuardarUsuarioActionPerformed(evt);
+                btnEditarUsuarioActionPerformed(evt);
             }
         });
 
@@ -137,12 +133,12 @@ public class AltaUsuario extends javax.swing.JFrame
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnGuardarUsuario)
+                                .addComponent(btnEditarUsuario)
                                 .addGap(51, 51, 51)
                                 .addComponent(btnVerUsarios, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
                                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                                 .addComponent(btnSalir))
                             .addComponent(jSeparator1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -182,7 +178,7 @@ public class AltaUsuario extends javax.swing.JFrame
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardarUsuario)
+                    .addComponent(btnEditarUsuario)
                     .addComponent(btnLimpiar)
                     .addComponent(btnVerUsarios)
                     .addComponent(btnSalir))
@@ -209,63 +205,52 @@ public class AltaUsuario extends javax.swing.JFrame
         txtPassword.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
-    {//GEN-HEADEREND:event_btnGuardarUsuarioActionPerformed
+    private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditarUsuarioActionPerformed
+    {//GEN-HEADEREND:event_btnEditarUsuarioActionPerformed
         if (isNullOrEmpty(txtNombreUser.getText()))
         {
             JOptionPane.showMessageDialog(null,"Por favor ingrese un Usuario.!");
             return;
         }
-        
+
         if (isNullOrEmpty(txtNombreUser.getText()))
         {
             JOptionPane.showMessageDialog(null, "Por favor ingres un Password!");
             return;
         }
-        
+
         try
         {
-             controladora.AltaUsuario(txtNombreUser.getText(), txtPassword.getText(), String.valueOf(cboRol.getSelectedItem()));
-        
-             JOptionPane.showMessageDialog(null,"Usuario Creado en la BD de Forma Exitosa!");
-             
-             txtNombreUser.setText("");
-             txtPassword.setText("");
+             int salida = JOptionPane.showConfirmDialog(null,
+                            "Desea Editar el Registro con Email: ? " + usuario.getEmail() + " , De la BD.", "Editar Usuario",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE);
+                    if (salida == 0)
+                    {
+                        //Obtengo el Id del ELemto a eliminar dela gtabla:
+                         txtNombreUser.setText(usuario.getEmail());
+                         txtPassword.setText(usuario.getPassword());
+                         cboRol.setSelectedItem(usuario.getUnRol().getNombreRol());
+
+//                        controladora.EditarUsuario(idUsuario);
+
+                        JOptionPane.showMessageDialog(null, "Registro Editado de la BD.....!");
+
+                       
+                    }
         }
         catch (Exception e)
         {
             System.out.println("ERROR en Alta Usuario: " + e.getMessage());
         }
-     
-        
-        
-        
-    }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
-    {//GEN-HEADEREND:event_formWindowOpened
-        List<Rol> listRoles = controladora.TraerListaRoles();
-
-        if (listRoles != null)
-        {
-            for (Rol listRole : listRoles)
-            {
-                
-               cboRol.addItem(listRole.getNombreRol());
-                
-            }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "SORRY!, No Existes Roles en la BD.");
-        }
-    }//GEN-LAST:event_formWindowOpened
+    }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
     private void btnVerUsariosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnVerUsariosActionPerformed
     {//GEN-HEADEREND:event_btnVerUsariosActionPerformed
-         AdminPrincipal adminPrincipal = new AdminPrincipal(controladora, usuario);
-         adminPrincipal.setVisible(true);
-         adminPrincipal.setLocationRelativeTo(null);
+        AdminPrincipal adminPrincipal = new AdminPrincipal(controladora, usuario);
+        adminPrincipal.setVisible(true);
+        adminPrincipal.setLocationRelativeTo(null);
 
         dispose();
     }//GEN-LAST:event_btnVerUsariosActionPerformed
@@ -279,9 +264,26 @@ public class AltaUsuario extends javax.swing.JFrame
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        if (controladora.TraerListaRoles() != null)
+        {
+            for (Rol TraerListaRole : controladora.TraerListaRoles())
+            {
+                cboRol.addItem(TraerListaRole.getNombreRol());
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Sorry!, No existen Roles en la BD.");
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+   
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardarUsuario;
+    private javax.swing.JButton btnEditarUsuario;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVerUsarios;
@@ -289,13 +291,22 @@ public class AltaUsuario extends javax.swing.JFrame
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField txtNombreUser;
     private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtPassword1;
     // End of variables declaration//GEN-END:variables
+
+    private void CargarUsuario(int idUsuario)
+    {
+        usuario = controladora.TraertUsrioPorId(idUsuario);
+        
+        txtNombreUser.setText(usuario.getEmail());
+        txtPassword.setText(usuario.getPassword());
+        cboRol.addItem(usuario.getUnRol().getNombreRol());
+        
+        
+    }
 }
