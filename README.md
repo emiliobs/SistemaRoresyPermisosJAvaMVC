@@ -26,5 +26,10 @@
 
 <img width="1278" alt="image" src="https://github.com/emiliobs/SistemaRoresyPermisosJAvaMVC/assets/3122465/2c2d3790-fbbc-4593-b901-7180735ff5a5">
 
+##Editar Usuarios
+
+<img width="1280" alt="image" src="https://github.com/emiliobs/SistemaRoresyPermisosJAvaMVC/assets/3122465/0f104bf0-e45c-48bf-bda4-be2e942f0a00">
+
+
 
 
