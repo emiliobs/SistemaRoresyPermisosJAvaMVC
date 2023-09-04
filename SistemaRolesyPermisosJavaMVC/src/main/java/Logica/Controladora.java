@@ -130,7 +130,5 @@ public class Controladora
          controladoraPersistencia.EditarUsuario(usuario);
     }
 
-   
-
-   
+  
 }
